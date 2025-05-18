@@ -35,54 +35,119 @@ The decoder reads the length first (until `#`), and then reads the next `length`
 
 ## 🛠 Java Implementation
 
-```java
 import java.util.*;
 
-public class Codec {
+/**
+ * LeetCode 271: Encode and Decode Strings
+ *
+ * Problem:
+ * Design an algorithm to encode a list of strings into a single string,
+ * and then decode it back to the original list.
+ *
+ * Use Case:
+ * This is useful when you want to send or store multiple strings as one compact format,
+ * such as saving a list of messages, usernames, or words into a single database field.
+ */
+public class EncodeDecodeStrings {
 
-    // Encodes a list of strings to a single string.
-    public String encode(List<String> strs) {
-        StringBuilder encoded = new StringBuilder();
-        for (String s : strs) {
-            encoded.append(s.length()).append('#').append(s);
-        }
-        return encoded.toString();
-    }
+    /**
+     * This class provides methods to encode and decode a list of strings.
+     * The strategy is to prefix each string with its length and a separator (like '#'),
+     * which allows us to safely extract strings later even if they contain special characters.
+     */
+    static class Codec {
 
-    // Decodes a single string to a list of strings.
-    public List<String> decode(String s) {
-        List<String> decoded = new ArrayList<>();
-        int i = 0;
-        while (i < s.length()) {
-            int j = i;
-            // Find the position of the '#' to extract the length
-            while (s.charAt(j) != '#') {
-                j++;
+        /**
+         * Encodes a list of strings to a single string.
+         *
+         * Encoding Format:
+         * Each string is encoded as: length_of_string + '#' + string
+         * For example:
+         * ["leet", "code"] -> "4#leet4#code"
+         *
+         * Time Complexity: O(N), where N is the total length of all strings
+         * Space Complexity: O(N)
+         */
+        public String encode(List<String> strs) {
+            StringBuilder encoded = new StringBuilder();
+            for (String str : strs) {
+                encoded.append(str.length()).append('#').append(str);
             }
-            int length = Integer.parseInt(s.substring(i, j));
-            j++; // skip the '#'
-            decoded.add(s.substring(j, j + length));
-            i = j + length;
+            return encoded.toString();
         }
-        return decoded;
+
+        /**
+         * Decodes a single string to a list of strings.
+         *
+         * It reads the number before each '#' to know how many characters to read next.
+         * For example:
+         * "4#leet4#code" -> ["leet", "code"]
+         *
+         * Time Complexity: O(N), where N is the length of the encoded string
+         * Space Complexity: O(N)
+         */
+        public List<String> decode(String s) {
+            List<String> result = new ArrayList<>();
+            int i = 0;
+
+            while (i < s.length()) {
+                int j = i;
+
+                // Step 1: Read until we find the '#'
+                while (s.charAt(j) != '#') {
+                    j++;
+                }
+
+                // Step 2: Extract the length of the next string
+                int length = Integer.parseInt(s.substring(i, j));
+
+                // Step 3: Extract the string of the specified length
+                j++; // skip '#'
+                String word = s.substring(j, j + length);
+                result.add(word);
+
+                // Step 4: Move to the start of the next encoded string
+                i = j + length;
+            }
+
+            return result;
+        }
     }
-}
-🧪 Example
-java
-Copy
-Edit
-public class Test {
+
+    /**
+     * Driver code to test the Codec class.
+     */
     public static void main(String[] args) {
         Codec codec = new Codec();
-        List<String> input = Arrays.asList("neet", "code", "love", "you");
-        String encoded = codec.encode(input);
-        System.out.println("Encoded: " + encoded);
 
-        List<String> decoded = codec.decode(encoded);
-        System.out.println("Decoded: " + decoded);
+        // Example test case 1
+        List<String> input1 = Arrays.asList("neet", "code", "love", "you");
+        String encoded1 = codec.encode(input1);
+        List<String> decoded1 = codec.decode(encoded1);
+
+        System.out.println("Original: " + input1);
+        System.out.println("Encoded : " + encoded1);
+        System.out.println("Decoded : " + decoded1);
+
+        // Example test case 2
+        List<String> input2 = Arrays.asList("we", "say", ":", "yes");
+        String encoded2 = codec.encode(input2);
+        List<String> decoded2 = codec.decode(encoded2);
+
+        System.out.println("\nOriginal: " + input2);
+        System.out.println("Encoded : " + encoded2);
+        System.out.println("Decoded : " + decoded2);
+
+        // Edge case: empty string and list
+        List<String> input3 = Arrays.asList("", "a", "");
+        String encoded3 = codec.encode(input3);
+        List<String> decoded3 = codec.decode(encoded3);
+
+        System.out.println("\nOriginal: " + input3);
+        System.out.println("Encoded : " + encoded3);
+        System.out.println("Decoded : " + decoded3);
     }
 }
-Output:
 
 yaml
 Copy
@@ -109,57 +174,5 @@ Q: What if strings are very large?
 Q: Can you implement this in a different language like Python?
 ✅ See below.
 
-🐍 Python Version (for comparison)
-python
-Copy
-Edit
-class Codec:
-    def encode(self, strs):
-        return ''.join(f"{len(s)}#{s}" for s in strs)
-
-    def decode(self, s):
-        res, i = [], 0
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            j += 1
-            res.append(s[j:j+length])
-            i = j + length
-        return res
-📘 Concepts Covered
-✅ Custom string serialization and parsing
-
-✅ Length prefix encoding
-
-✅ Edge case handling (empty strings, special characters)
-
-✅ Time & space analysis
-
-✅ Iterating and parsing strings in-place
-
-🧠 Prerequisites for Understanding
-Basics of Strings (substring, charAt, length)
-
-Understanding of List/Array operations
-
-Integer parsing from substrings
-
-StringBuilder for efficient string concatenation
-
-🎯 Useful for Interview Topics
-String Manipulation
-
-Encoding/Decoding
-
-Custom Serialization
-
-Data Transfer Formats
-
-✅ Summary
-This problem is a great test of string manipulation and custom encoding. It teaches you how to preserve structure in a flat format while avoiding ambiguity and how to reverse that process accurately.
-
-It’s also very real-world relevant — this is how data is often serialized for transmission or storage in systems like messaging apps or network protocols.
 
 
