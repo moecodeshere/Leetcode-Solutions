@@ -149,9 +149,7 @@ public class EncodeDecodeStrings {
     }
 }
 
-yaml
-Copy
-Edit
+
 Encoded: 4#neet4#code4#love3#you
 Decoded: [neet, code, love, you]
 ⏱ Time and Space Complexity
@@ -171,8 +169,6 @@ Q: Can you encode an empty list or list with empty strings?
 Q: What if strings are very large?
 ✅ This approach handles any size up to input constraints because parsing is based on string length.
 
-Q: Can you implement this in a different language like Python?
-✅ See below.
 
 
 
