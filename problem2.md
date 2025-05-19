@@ -14,7 +14,7 @@ Uses a `HashSet` for optimal performance.
 
 ## 🛠️ Key Concepts Covered
 
-- Use of `HashSet<Integer>` to track unique elements.
+- Use of `HashSet<Integer>` to track u nique elements.
 - Efficient loop-based approach to check for duplicates.
 - Time vs. space trade-offs in algorithm design.
 
