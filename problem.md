@@ -6,7 +6,7 @@ A simple Java program that demonstrates how to count the frequency of each chara
 
 ## 🧠 Problem Statement
 
-> Given a string, count how many times each character appears and store that information in a map.
+> Given a string, count how many times each character appears and store tha t information in a map.
 
 ---
 
