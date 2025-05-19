@@ -19,7 +19,7 @@ A simple Java program that demonstrates how to count the frequency of each chara
 
 ---
 
-## 📌 Example Input/Output
+## 📌 Examp le Input/Output
 
 ### Input:
 ```java
