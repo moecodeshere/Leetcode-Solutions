@@ -24,20 +24,3 @@ This repository contains my hand-picked **LeetCode solutions** organized by:
 
 ---
 
-## 📂 Folder Structure
-
-leetcode-java/
-├── arrays/
-│ ├── two_sum.java
-│ └── max_subarray.java
-├── hashmap/
-│ └── group_anagrams.java
-├── sliding_window/
-│ └── longest_substring_without_repeat.java
-├── stack_queue/
-├── linked_list/
-├── trees_graphs/
-├── dp/
-├── math_geometry/
-└── notes/
-└── patterns.md
