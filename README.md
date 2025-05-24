@@ -32,7 +32,7 @@ This repo is not just a solution bank. It's a personal roadmap to:
 
 ---
 
-## 🧰 Data Structures Mastered Here
+## 🧰 Data Structures Mastered Here.
 
 | Structure        | Use Cases & Application Areas                        |
 |------------------|------------------------------------------------------|
