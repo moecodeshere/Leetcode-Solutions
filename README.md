@@ -1,4 +1,4 @@
-<h1 align="center">📘 LeetCode Question Java Solutions</h1>
+<h1 align="center">📘 LeetCode Question & Solutions Java</h1>
 
 <p align="center">
   Mastering coding interviews through <strong>patterns</strong>, <strong>data structures</strong>, and <strong>deep understanding</strong><br/>
