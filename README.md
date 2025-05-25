@@ -7,7 +7,7 @@
 
 ---
 
-## 🔍 Why This Repository?
+## 🔍 Why this Repository?
 
 This repo is not just a solution bank. It's a personal roadmap to:
 - ✅ Practice by **problem-solving patterns**, not just topics.
