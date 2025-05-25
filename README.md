@@ -10,7 +10,7 @@
 ## 🔍 Why this Repository?
 
 This repo is not just a solution bank. It's a personal roadmap to:
-- ✅ Practice by **problem-solving patterns**, not just topics.
+- ✅ Practic by **problem-solving patterns**, not just topics.
 - ✅ Improve **code quality** and **Java syntax fluency**.
 - ✅ Develop true **algorithmic thinking** and systemized approaches.
 - ✅ Make revision faster with clean explanations and categorizations.
