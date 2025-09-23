@@ -7,6 +7,7 @@ Part 1: Arrays & Strings (1–100)
 5 Valid Anagram — 242 (HashMap, String)
 6 Plus One — 66 (Array Math)
 7 Move Zeroes — 283 (Two Pointers)
+
 8 Rotate Array — 189 (Array Rotation)
 9 Merge Sorted Array — 88 (Two Pointers, Merge)
 10 Majority Element — 169 (Boyer-Moore Voting)
