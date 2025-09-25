@@ -3,7 +3,7 @@ A. Array Basics - Pure Easy (1-20)
  
 Running Sum of 1d Array — 1480 (Basic iteration) 
 Find Numbers with Even Number of Digits — 1295 (Digit counting)
-Max Consecutive Ones — 485 (Simple counting)
+Max Consecutive Ones — 485 (Simple counting) 
 Squares of a Sorted Array — 977 (Two pointers intro)
 Duplicate Zeros — 1089 (Array modification)
 Merge Sorted Array — 88 (Two array merging)
