@@ -5,7 +5,7 @@
   A curated, structured journey to becoming technically strong and interview-ready.
 </p>
 
----
+---    
 
 ## 🔍 Why this Repository?
 
