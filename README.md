@@ -65,7 +65,7 @@ This repo is optimized for:
 - Strong focus on patterns like Two Pointers, Sliding Window, Recursion, and DP
 
 ---
-
+ 
 ## 📚 Study Methodology
 
 Each uploaded solution follows this format:
