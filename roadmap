@@ -18,7 +18,7 @@ A. Array Basics - Pure Easy (1-20)
 15. Height Checker — 1051 (Comparison with sorted)
 16. Third Maximum Number — 414 (Set for top elements)
 17. Find All Numbers Disappeared in an Array — 448 (Array as hash)
-18. Single Number — 136 (XOR properties)
+18. Single Number — 136 (XOR properties) 
 19. Majority Element — 169 (Boyer-Moore or counting)
 20. Contains Duplicate — 217 (HashSet detection)
 
