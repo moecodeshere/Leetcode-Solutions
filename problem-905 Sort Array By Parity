@@ -1,1 +1,22 @@
-
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        // Index to track the position of the next even element
+        int evenIndex = 0;  
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                // Swap the current element with the next available even-indexed position
+                swap(nums, i, evenIndex++);
+            }
+        }
+        
+        // Return the sorted array
+        return nums;  
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
