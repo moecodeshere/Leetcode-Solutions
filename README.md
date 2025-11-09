@@ -1,6 +1,6 @@
 <h1 align="center">📘 LeetCode Question & Solutions Java</h1>
 
-<p align="center">
+<p align="center"> 
   Mastering coding interviews through <strong>patterns</strong>, <strong>data structures</strong>, and <strong>deep understanding</strong><br/>
   A curated, structured journey to becoming technically strong and interview-ready.  
 </p>
