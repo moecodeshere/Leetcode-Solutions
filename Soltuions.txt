@@ -110,9 +110,64 @@ So the problem here is the negative integers everything is already sorted so the
 [-7,-3,2,3,11]  this becomes [49, 9, 4, 9 , 121]  so between there somewhere there is a point around which everything is already sorted something like [49, 9,(that point) 4, 9 , 121]
  So we use two pointers a start and an end pointer and sort the array by shifting them 
 
-Question5. Duplicate Zeros — 1089 (Array modification)
-Question6. Merge Sorted Array — 88 (Two array merging)
-Question7. Remove Element — 27 (In-place removal)
-Question8. Remove Duplicates from Sorted Array — 26 (Two pointers)
-Question9. Check If N and Its Double Exist — 1346 (HashSet usage)
+Question5. 🔥Duplicate Zeros — 1089 (Array modification)
 
+Main idea is we go from right to left, we have imaginary pointer which exceeds the array length and we just write when its within range.
+Step1) Count no of zeros/extra elements
+Step2) we traverse right to left and simply shift each element if j<n & if the lament is zero we shift the j pointer left once and write a zero again 
+
+Things to remember in this code is 
+First we use index to shift all elements
+Second if the number is zero we shift one left and and write zero
+
+Question6. Merge Sorted Array — 88 (Two array merging)
+We will have three pointers one for first reading array, one for reading second , third for writing first, simply compare elements, then place, thing to remember here is the first array can be fully read before the second so then we will need to check if any left in second array and have ablock like 
+while(j >= 0) {
+           nums1[k] = nums2[j];
+           k--;
+           j--;
+       }
+
+Question7. Remove Element — 27 (In-place removal)
+We have one pointer that reads/iterate through array and checks the what elements are not equal to value, and then we have another pointer for writing the elements.
+Question8. Remove Duplicates from Sorted Array — 26 (Two pointers)
+ Again two pointers, one pointer reads the array , here the condition is as it is ascending order you just need to check if right element is greater than the left element also what we then just switch the element with the other one 
+
+Question9. Check If N and Its Double Exist — 1346 (HashSet usage)
+             Brute force simple – two for loops and check for each element if next exists 
+             Hashmap – make a hashmap add with key as element and index as value 
+		Then simply check through containskey (function) if 2*element exists and the                                                
+                        index is not equal to i
+             Hashset – make an hashset so here the thing to remember is first we check and if it   
+                            doesn't exists then we add, so the flow is like 
+First make a hashset
+Check if the nums*2 exists and have another || condition (nums%2 =0 && set.contains(nums/2) return true
+Else add the nums to set
+
+Question 10. Valid Mountain Array — 941 (Single pass validation) 
+ So the way to think here is think about peak, there will a increasing side and an decreasing side, have two pointers and increase one if the elements are increasing and decrease one (from the end) if its decreasing from the other, if they meet at the same its a peak.
+Things to consider edge cases - peak is not on one of the ends for example the first element or the last 
+Question 11. Replace Elements with Greatest Element on Right Side — 1299 (Right-to-left)
+	Brute force- for left to right, check the greatest for each element and then update each        
+                                element 
+Optimal - Go from right to left and have a variable that keeps track of the max element and the question in my mind was how are we going to tackle the update and still read problem so we simply make a variable to check 
+Question 12. Move Zeroes — 283 (Two pointers with zeros)
+Simply have two pointers one to iterate through (using the for loop) and have one pointer that just holds the position of the zeros that we need to make a switch here and then we have a temp variable to make the switch 
+Question 13. Sort Array By Parity — 905 (Partitioning)
+We have two pointers one at start and one at end then we will have 4 cases 
+	Odd , even then we swap i++,j–
+	Even, odd then we do nothing j- -
+	Odd, odd we do nothing  i++
+	odd , even we do nothing j - -
+Question 14. Sort Array By Parity II — 922 (Even/odd positioning)
+           I=0 AND J =1  and we check if i is even do nothing i+=2 similarly for j check if odd and increment by 2 places and then at the end of each for loop simply swap 
+So how it looks is 
+One while loop
+	while(i condition)
+	while(j condition)
+	if(i & j both in bounds)
+		Swap
+
+Question 15. Height Checker — 1051 (Comparison with sorted)
+	So we simply make a new array and then we clone and sort array using int sorted[] = heights.clone();Arrays.sort(sorted);
+After that we have a simple for loop and check if each element is equal, if not counter increment and return counter 
