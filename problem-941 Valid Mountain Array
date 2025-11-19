@@ -11,4 +11,4 @@ class Solution {
             i++;
         return i == n - 1;
     }
-}
+} 
