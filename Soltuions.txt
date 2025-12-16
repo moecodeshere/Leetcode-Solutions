@@ -87,7 +87,8 @@ int count=0;
            if(String.valueOf(nums[i]).length()%2==0){
                count++;
 2) Counting Digits
-By counting digits until the quotient of that number is not equal to zero            sigle digit/10 ==0
+By counting digits until the quotient of that number is not equal to zero  
+single digit/10 ==0
 
 3)Using Math (log)
 Number of digits = floor(log₁₀(number)) + 1       just think int terms of log basics
@@ -171,3 +172,119 @@ One while loop
 Question 15. Height Checker — 1051 (Comparison with sorted)
 	So we simply make a new array and then we clone and sort array using int sorted[] = heights.clone();Arrays.sort(sorted);
 After that we have a simple for loop and check if each element is equal, if not counter increment and return counter 
+
+Question 16. Third Maximum Number — 414 (Set for top elements)
+	Basic approach- turn array to set, set to array then sort and give the max 			      
+            Use collections-                                         Set<Integer> set = new HashSet<>();
+        for(int num: nums) set.add(num);
+        if(set.size()<3) return Collections.max(set);
+        set.remove(Collections.max(set));
+        set.remove(Collections.max(set));
+        return Collections.max(set);
+	Use TreeSet/ordered set
+	Use Three variables 
+
+
+Question 17. Find All Numbers Disappeared in an Array — 448 (Array as hash)
+Brute force - have 2 for loops, we just find if the number is present if present ok , if not and to check use this condn  if(i == nums.length){ missing.add(number);
+If not present simply add in arraylist
+
+Inplace mark negative- simple for each element mark that index’s element as negative then when that element is not negative add the element
+
+Question 18. Single Number — 136 (XOR properties) 
+	So XOR is like only true when both bits are different , so what we can do here take xor of all the elements, rest of the elements will automatically become 0 and we will only be left with the distinct number.
+And for implementation’s purpose we will start from 0 as xor of any number with zero is number itself.
+4 → 0100
+0 → 0000      
+            4 XOR 0 → 0100    
+So if we have an array like [4,2,1,2,1]    4^2^1^2^1 → 4^0^0 → 4^0 → 4    
+
+
+Question 19. Majority Element — 169 (Boyer-Moore or counting)
+Brute → for loop ek ke andr ek , for each count kro total if occurrence > n/2 return number.
+Hashmap → hashmap me daldo use getorDefault, same n/2 ka khel
+Sort and give middle Approach   sorry and give n/2th element
+Booyre Moore Voting → have a candidate(current) for each occurrence add to its count and when the count is zero , change the candidate and at the end of the array, whichever candidate is current is the majority or winning candidate.
+Bit manipulation → count the the number of 1s in each position for each element , and on basis of that judge what is the numbers bits , also we need to do 32 bits as integer is 32 bits long
+
+
+Question 20. Contains Duplicate — 217 (HashSet detection)
+Simply add to hashset and check if length is equal or not 
+Sort and check adjacent 
+Add to hashmap if value for any key greater than 1, return duplicate 
+Streams, convert to streams, 
+	return Arrays.stream(nums)
+             .distinct()
+             .count() != nums.length;
+
+Question 21. Best Time to Buy and Sell Stock — 121 (Single pass min tracking)
+Brute force - check profit for each element towards all the elements to the right, simple nested for loops technique
+Another approach is kind of clever , so we have use elements as as iteration , then we find minvalue we encountered till now, then we have a maxprofit , a profit
+We check the profit from mintillnow and calculate profit and then compare it with maxprofit
+class Solution {
+   public int maxProfit(int[] prices) {
+     
+       int mintillnow =Integer.MAX_VALUE;
+       int maxprofit=0;
+       for(int price :prices){
+           mintillnow =Math.min(mintillnow,price);
+           int profit = price- mintillnow;
+           maxprofit=Math.max(profit,maxprofit);
+       }
+       return maxprofit;
+   }
+}
+ 
+
+Question  22. Find Pivot Index — 724 (Left vs right sum)
+	So what we can do is have the total and calculate right and left sum towards each element and compare the numbers right sum = total - left sum - current element 
+If ls == rs return i and if they not return -1;
+Question  23. Pascal's Triangle — 118 (Row generation)
+So the left and right most elements are 1 and rest ith term are the sum of previous rows (i-1)th + (i)th term 
+
+So the tactical thing is we create a list of integers, and then add this list for each iteration to a list of list of integers that we are gonna return 
+
+
+Question  24. Pascal's Triangle II — 119 (Space optimized)
+Same ;like previous but we need a more optimized solution these all are o(n^2)
+So a better approach is using the combinations formula, where i be the row and k be the element then iCk is the kth element 
+And the tactical deplyement is like 
+nC(k+1) = nCk × (n-k) / (k+1)    Get next value from current
+nCk = nC(k-1) × (n-k+1) / k		Get current from previous (used in code)
+Question  25. Find All Duplicates in an Array — 442 (Array as hashmap)
+So the problem here says that there should be linear space utilization so the problem is when we use hashmaps, hashsets, sorting those approaches cant follow the restrain , so what we can do instead is marking the index or elements as negative , so an algorithm like 
+Step1)having a list named result
+Step2)calculate index 
+Step3)check if nums[index] is negative
+	If yes then add to result\
+	In not , make the element negative
+
+Question 26. Reverse String — 344 (Two pointers swap)
+Simply use two pointers, one at the strating end, other at the other end, and simply use a temp and swap elements
+Question  27. Valid Palindrome — 125 (Two pointers validation)
+SO tactical points here are just use while(l<r && !Character.isLetterOrDigit(s.charAt(l))) l++
+And then just checking if charAt(l) is equal to charAt(r)
+Question 28. Remove Duplicates from Sorted Array II — 80 (Count-based removal)
+So basically what we trying to have 2 pointers and we have one reading index that is a for loop, then we have a write index and we compare the writeindex-2 simply if the readindex is not equal to writeindex-2 we update the write and simply ++the write index 
+Question 29. Two Sum II - Input Array Is Sorted — 167 (Two pointers sum)
+As the array is in ascending order what we can do is have two pointers one at start and the other at end and simply return the index if sum is equal to target and if this is not the case then what we can do is compare the sum and target and accordingly  move left, right index 
+Question 30. Reverse Vowels of a String — 345 (Conditional swap) (nice question)
+SO first thing first strings are immutable so convert to array use char[] arr =s.toCharArray();
+Next tactical thing is we need to check if a character is vowel we simply create a string named , vowel and then use vowels.indexOf(arr[i])==-1) 
+And then we simply swap and i++,j--   
+
+Question 31. Intersection of Two Arrays — 349 (Set intersection)
+Question 32. Container With Most Water — 11 (Two pointers greedy)
+Question 33. 3Sum — 15 (Sorted two pointers)
+Question 34. 3Sum Closest — 16 (Distance optimization)
+Question35. Sort Colors — 75 (Dutch flag partition)
+Question36. Valid Triangle Number — 611 (Triangle inequality)
+Question 37. Boats to Save People — 881 (Greedy pairing)
+Question 38. Bag of Tokens — 948 (Two pointers strategy)
+
+
+	
+	
+
+
+
