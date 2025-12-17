@@ -274,6 +274,8 @@ Next tactical thing is we need to check if a character is vowel we simply create
 And then we simply swap and i++,j--   
 
 Question 31. Intersection of Two Arrays — 349 (Set intersection)
+Have two sets first set add the nums1 and then in second set only add elements that are present both in nums1 and nums2 and at the end we convert the set to an array using streams return result.stream().mapToInt(i -> i).toArray
+
 Question 32. Container With Most Water — 11 (Two pointers greedy)
 Question 33. 3Sum — 15 (Sorted two pointers)
 Question 34. 3Sum Closest — 16 (Distance optimization)
