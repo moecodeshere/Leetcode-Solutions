@@ -8,7 +8,7 @@ Phase 5: 100 problems (Heap + Tree basics)
 Phase 6: 80 problems (BST + Graph algorithms)
 
 PHASE 1
-Phase 1: Array Patterns (1-120)
+Phase 1: Array Patterns (1-120) 
 A. Array Basics - Pure Easy (1-20)
 B. Two Pointers - Gradual Complexity (21-40)
 C. Sliding Window - Step by Step (41-70)
