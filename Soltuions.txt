@@ -8,7 +8,7 @@ Phase 5: 100 problems (Heap + Tree basics)
 Phase 6: 80 problems (BST + Graph algorithms)
 
 PHASE 1
-Phase 1: Array Patterns (1-120) 
+Phase 1: Array Patterns (1-120)
 A. Array Basics - Pure Easy (1-20)
 B. Two Pointers - Gradual Complexity (21-40)
 C. Sliding Window - Step by Step (41-70)
@@ -277,6 +277,8 @@ Question 31. Intersection of Two Arrays — 349 (Set intersection)
 Have two sets first set add the nums1 and then in second set only add elements that are present both in nums1 and nums2 and at the end we convert the set to an array using streams return result.stream().mapToInt(i -> i).toArray
 
 Question 32. Container With Most Water — 11 (Two pointers greedy)
+Have two pointers, left and right and simply calculate width=right-left ; height=Math.min(height[l],height[r])
+For two pointers which ever of left and right pointer’s height is smaller move that 
 Question 33. 3Sum — 15 (Sorted two pointers)
 Question 34. 3Sum Closest — 16 (Distance optimization)
 Question35. Sort Colors — 75 (Dutch flag partition)
