@@ -1,0 +1,23 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int l=0;
+        HashMap<Integer,Integer> count = new HashMap<>();
+        int maxtree=0;
+        for(int r=0;r<fruits.length;r++){
+            int fruit=fruits[r];
+            count.put(fruit,count.getOrDefault(fruit,0) +1);
+
+            while(count.size()>2){
+                int lf = fruits[l];
+                count.put(lf,count.get(lf)-1);
+
+                if(count.get(lf)==0){
+                    count.remove(lf);
+                }
+                l++;
+            }
+            maxtree=Math.max(maxtree,r-l+1);
+        }
+        return maxtree;
+    }
+}
