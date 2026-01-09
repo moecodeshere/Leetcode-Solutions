@@ -279,16 +279,110 @@ Have two sets first set add the nums1 and then in second set only add elements t
 Question 32. Container With Most Water — 11 (Two pointers greedy)
 Have two pointers, left and right and simply calculate width=right-left ; height=Math.min(height[l],height[r])
 For two pointers which ever of left and right pointer’s height is smaller move that 
+
 Question 33. 3Sum — 15 (Sorted two pointers)
+First we sort the array, we sort it so we have a sense of directional order that way we can manipulate it.
+THEN we have three pointers i(an outer loop)
+J as i+1 for each iteration, then k as length-1  
+We check if nums[j] +nums[k] = target(ie. -nums[i])
+Then we check if sum(ie. nums[j]+sums[k])   if sum<target then j++ because array is sorted   Else k--  
+Also other important thing is we dont want duplicates in the result so we put a conditionFor i at the start of for loop  if(i>0 && nums[i-1]==nums[i]) continue;
+Then two while loops for j & k if(j<k && nums[j-1]=nums[j] j++;
+if(j<k && nums[k]=nums[k+1] k--;
 Question 34. 3Sum Closest — 16 (Distance optimization)
+Same like previous question have 3 pointers same technique only this time the difference is we need to find closest so we take abs difference and then play accordingly , have a current sum and a closest sum comparing them updating them 
+
+
+
+
+
+
+
+
 Question35. Sort Colors — 75 (Dutch flag partition)
+
+Main idea is we have three pointers as boundaries all 0’s right to low 
+To whenever nums[mid]=0 here swap low and mid element mid, low++
+If mis=1 mid++
+If mid==2 swap aur sirf high--   matlab us element ko mid ke right me daldiya 
+So three pointers but think the range of those we have some thing like 
+
+
+low=0;mid=0;high=n-1;
+Elements sirf 0,1,2 hi honge , to apn mid se khele khel 
+if(nums[mid]==0)  should be then swap nums[mid] and nums[low] because 0 should be right of low and we mid++ and low++
+if(nums[mid]==1) to simply mid++
+else(nums[mid] ==2) swap nums[mid] and nums[high] and mid++ and high -- 
+ 
+
 Question36. Valid Triangle Number — 611 (Triangle inequality)
+So basically we sort the array, the idea behind sorting is to be able to play with the longest side so we simply loo[pp around the longest side 
+If sum of smaller sides is longer than the longest side then it is a triangle , so the thing is array is sorted so all the combinations from i to j which are (j-i) ways of triangles 
+To count =+j-i; j–;
+Else i++;
+
 Question 37. Boats to Save People — 881 (Greedy pairing)
+Apnne sort krlena hai, fir simple best case if heaviest goes with lightest if possible if not heaviest goes by himself.
+if(heavy+light)<=limit;{
+Light++;}
+heavy--  ; heavy always going in a boat;
+Boats++; 
+
+
+
+
+
 Question 38. Bag of Tokens — 948 (Two pointers strategy)
 
+Jha bhi greedy abhi tak , bas sort krdo array tbhi you can use it greedily. 
+Most greedy approach hogi sort krke cheapest token se score khredna (FACEUP)that means l, (FACEDOWN) me greedy hoga score tab spent jab token[h] max . 
 
 	
-	
+Sliding Window Introduction (39–52)
+Question 39. Maximum Average Subarray I — 643 (Fixed window sum)
+Dont always think in two pointer, for a window if its length is fixed we not need to have two pointers for each of its boundaries, instead use the length of the window.
+Calculate sum of first window, then just add next element to sum and then remove previous 
+Question  40. Minimum Difference Between Highest and Lowest of K Scores — 1984 (Sorted sliding window)
+First sort the array, that way we already know the highest and lowest for k numbers, then we simply subtract and see what is min diff
+Question  41. Grumpy Bookstore Owner — 1052 (State-based window)
+First find all the satisfied customers , now the problem is if we could flip as many not satisfied to satisfied(ie is non grumpy), we basically need to maximize the number of unsatisfied customers.
+Then we simply add satisfied and the maxunsatisifed customers in that k minutes of time, using the window 
+Question 42. Max Consecutive Ones III — 1004 (Window with K flips)(thoda yaad rkne type ka hai)
+Variable pointer windows apan a lot of times solve by 2 pointers with sliding window 
+Have two pointer land r , r iterates the array and first we expand the array until max zeros possible , after that we start to shift left pointer 
+Question 43. Longest Substring Without Repeating Characters — 3 (Variable window)
+	Actual trick is using hashmap, 
+Two pointer chalane hai teji se, sliding window bhi hai but sirf contextual/pragmatism of problem, otherwise computation me khi bhi ye involved nhi hai         l,r=0;
+To trick is jab aisa element mile jo already in hashmap hai,l ko update in such a way that last appearance +1; index  so l =map.get(c) +1;, fir maxlength math.max se update krte rhte .length of current window=l-r+1
+
+Question 44. Minimum Size Subarray Sum — 209 (Shrinkable window)
+Simply ek left aur right pointer ho , right se sum lete jao , aur jab sum bada hojaw target se tab , then ek while loop jo l++ karta jae and check krta jae minlen
+Question 45. Longest Repeating Character Replacement — 424 (Character frequency)
+So the trick here is that we can switch atmost k times, and any valid substring would be lengthofwindow - mostfrequentelement <k , if not we simply move the left pointer towards right
+Question 46. Fruit Into Baskets — 904 (Two distinct elements)tricky implementation 
+Same concept of window, things to consider is how you move window and what condition you apply
+So window has l and r , we move r to read array at every iteration, move l++ when map.size>k , and update value of map.get(leftfruit)-1;remove if map.get(lf) ==0
+And update maxtree len, by math
+
+Question 47. Permutation in String — 567
+Have two arrays for freq counting one for s1 and one for a window of len =s1(we try to maintain it to s1)
+Populate s1count, populate windowcount with s2 such that if element or i of s2 is >=s1.len
+Freq of leftmost -- in windowcount array, then if both arrays are equal return tru otherwise false
+Question 48. Find All Anagrams in a String — 438 (All anagram positions)
+Whenever we want to find if a string’s some permutation is present or not we can simply think of frequency arrays for each of the string , this is same like previous questions ,
+We again simply decrease the frequency of the leftmost element when window is getting longer than p.length() and at the end simply use if Arrays.equal(array1, array2)
+
+Question 49. Longest Substring with At Most Two Distinct Characters — 159 (K=2 distinct)
+Question 50. Longest Substring with At Most K Distinct Characters — 340 (Generalized K distinct)
+Question 51. Subarrays with K Different Integers — 992 (Exact K distinct)
+Question 52. Longest Subarray of 1's After Deleting One Element — 1493 (One deletion allowed)
+
+
+
+
+
+HashMap Fundamentals (53–68)
+ 53. Two Sum — 1 (Classic hashmap)
 
 
 
