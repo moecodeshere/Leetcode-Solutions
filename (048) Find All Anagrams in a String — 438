@@ -1,0 +1,20 @@
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        int[] pcount=new int[26];
+        int[] windowcount=new int[26];
+        for(int i=0;i<p.length();i++){
+            pcount[p.charAt(i)-'a']++;
+        }
+        for(int i=0;i<s.length();i++){
+            windowcount[s.charAt(i)-'a']++;
+            if(i>=p.length()){
+                windowcount[s.charAt(i-p.length())-'a']--;
+            }
+            if(Arrays.equals(pcount,windowcount)){
+                result.add(i-p.length()+1);
+            }
+        }
+        return result;
+    }
+}
