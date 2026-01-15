@@ -371,18 +371,75 @@ Freq of leftmost -- in windowcount array, then if both arrays are equal return t
 Question 48. Find All Anagrams in a String — 438 (All anagram positions)
 Whenever we want to find if a string’s some permutation is present or not we can simply think of frequency arrays for each of the string , this is same like previous questions ,
 We again simply decrease the frequency of the leftmost element when window is getting longer than p.length() and at the end simply use if Arrays.equal(array1, array2)
-
 Question 49. Longest Substring with At Most Two Distinct Characters — 159 (K=2 distinct)
+So the questions is like the final substring must have 2 distinct characters, simply think of a hashmap and use the technique every time a new element appears to right we reduce the count in hashmap as soon as the count of the left element zero remove it , but we always will shift left point to right
+Main point is understanding that hashmap length represents the number of distinct elements
 Question 50. Longest Substring with At Most K Distinct Characters — 340 (Generalized K distinct)
-Question 51. Subarrays with K Different Integers — 992 (Exact K distinct)
-Question 52. Longest Subarray of 1's After Deleting One Element — 1493 (One deletion allowed)
+Same like last problem main thing, is that theres a hashmap whose length is distinct ele,
+We havea left and a right pointer , we move right and put it in hashmap, fir agr more than or k elements hojae jab hasmap to left wla ++ krke uska count decrease 
 
+Question 51. Subarrays with K Different Integers — 992 (Exact K distinct)
+This problem is also similar to previous ones, we simply calculate maximum number of substrings/subarrays present, for example we calculate atmost 3 it include with 1, 2 elem
+So we simple subtract with atmost(k)-atmost(2) == with(k)
+Question 52. Longest Subarray of 1's After Deleting One Element — 1493 (One deletion allowed)
+So we are trying to find the longest window with utmost one zero.
+We go by solving it such that if number of zeros is greater than 1 , we shift left pointer 
 
 
 
 
 HashMap Fundamentals (53–68)
- 53. Two Sum — 1 (Classic hashmap)
+Question 53. Two Sum — 1 (Classic hashmap)
+Simple use hashmap, have a compliment , so what are we trying to add in hashmap, element and its index, so for current element if we have its compliment then return the that i and the compliments(the other elements) index 
+Question 54. Valid Anagram — 242 (Frequency counting)
+Two frequency arrays , like a to z each element representing an alphabet
+
+Question 55. Contains Duplicate III — 220 (Value and index constraint)
+Either use a bucket sort , we used treeset (o of nlogk), so the idea is to use floor and ceiling, we simply calculate the floor.
+We have two if conditions one for floor where we check floor is not null and if num- floor <= valuediff and similarly for the ceiling.
+And the sliding window part sixmply , agr i>indexdiff to remove (i-indexdiff) or the element outside the scope.USE LONG
+Question 56. Intersection of Two Arrays II — 350 (Frequency map)
+To apn frequency array use krenge ,create them , populate them and then compare fir utti baar print krdo 
+Print krne ka logic, 
+Ek for loop ke andr ek aur , but ye n^2 complexity nhi hai , o of n for some reason most probably because of input or some logic 
+Question 57. First Unique Character in a String - 387 (Frequency + order)
+Simply use a freq array or a hashmap,
+Step 1)populate the array/hashmap
+Step 2)simply ek for loop, jiska pehla 1 agya , wo answer i
+Question 58. Ransom Note — 383 (Character availability)
+Simply use frequency arrays and then if frequency of each element/alphabet for ransomnote is less than magazine return false, else return true;
+Question 59. Isomorphic Strings — 205 (Character mapping)
+So what we do is we remember the first occurance of characters for the strings, if they are not equal return false 
+Question 60. Word Pattern — 290 (Bijection mapping)
+Whenever dealing with hashmap remember we mostly check if something is not present if we try and see something is present what happens is the first time we encounter it we return a true and its broken because we dont parse rest of the array 
+
+So here we plan to have to Hashmap one chartoword and the other wordtochar, we then check if chartoword maps to that word and wordtochar maps to that character. 
+Question 61. Group Anagrams — 49 (Signature grouping)
+TO scene aisa hai, ek hashmap banae of <String,list<String>> ka, fir each element ko sort krke ,usko arralist me add krte jae, also java me string immutable hoe, to apn kya krte convert it to an array of char[] chars = stringname.toCharArray()); fir sort krke convert 
+Question 62. Happy Number — 202 (Cycle detection)
+So the thing is when we do the happy number check again and again, a loop is formed ,
+We can check this loop by two methods 
+USE a set, if its a set the loop doesnt infinite as the number of duplicates are eliminated 
+USE two pointer, one fast and one slow=n, fast=nextnum(slow/n);
+Fir if fast pointer is equal to slow , false but code krna hai opposite code kaise likhoge
+while (fast != 1 && slow != fast) {
+           slow = getNext(slow);
+           fast = getNext(getNext(fast));
+       }
+      
+       return fast == 1;
+
+
+
+Question 63. Contains Duplicate II — 219 (Index tracking)
+Question 64. Longest Harmonious Subsequence — 594 (Adjacent frequencies)
+Question 65. Degree of an Array — 697 (Frequency + range)
+Question 66. Set Mismatch — 645 (Duplicate + missing)
+Question 67. Valid Sudoku — 36 (Multiple sets)
+Question 68. Logger Rate Limiter — 359 (Time-based hashmap)
+
+
+
 
 
 
