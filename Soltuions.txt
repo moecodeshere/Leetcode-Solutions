@@ -432,13 +432,81 @@ while (fast != 1 && slow != fast) {
 
 
 Question 63. Contains Duplicate II — 219 (Index tracking)
+Have a hashmap with the element as key and index as value, if map contains the element and i-that index<= k , then return true , else add the element to the map
 Question 64. Longest Harmonious Subsequence — 594 (Adjacent frequencies)
+Have a hashmap , populate it with the elements and their frequencies , then use map.Keyset() and in a for loop check if hashmap has ele+1;  then add them and give maxlen using Math
 Question 65. Degree of an Array — 697 (Frequency + range)
+So here the approach is for every element we need to keep in account, three things , count/frequency , first appearance, last appearance. We use three hashmaps to keep track of them.After that for all elements whose count == degree , we calculate window r-l+1;
+We use int degree=Collections.max(count.values()); to find degree 
+         For syntactical finesse   for(Integer num : count.keySet()){
+
 Question 66. Set Mismatch — 645 (Duplicate + missing)
+We simply have a hashmap record everything, then have a for loop if something missing add it as missing, if somevalue is 2 add it as duplicate and return ,
+
+You can also use a array as the length , nums[i] is ok not too big , something similar to a frequency array
 Question 67. Valid Sudoku — 36 (Multiple sets)
+Matrix dekhke bharbharae nhi, simply ek set kre of strings, aur har ek element ko unique 
+Do for loop ho ,kaise banae , ek element ko teen tareeke se store kre row→ c + “in row” + i
+Col→ c + “in col” + j    box→ c + “in box” + i/3 + “-” + j/3
+Ok ab agr new element me kuch bhi contains hoga to false either add
 Question 68. Logger Rate Limiter — 359 (Time-based hashmap)
 
 
+
+
+Prefix Sum Pattern (69–78)
+Question 69. Range Sum Query - Immutable — 303 (Prefix sum query)
+Constructor, method, class, ye sab samjh nhi arhe hai sahi se, logic is ok
+Ki prefix sum calculate krlo ki prefix[0]=nums[0], fir prefix[i]=prefix[i-1]+nums[i];
+Fir return ke time if left==0 return prefix[right]
+Else prefix[right]-prefix[left-1] because l and r inclusive chiaye
+Question 70. Range Sum Query 2D - Immutable — 304 (2D prefix sum)
+
+class NumMatrix {
+  
+   private int[][] prefix;
+   public NumMatrix(int[][] matrix) {
+       int m=matrix.length;
+       int n=matrix[0].length;
+       prefix = new int[m][n];
+       for(int i=0;i<m;i++){
+           prefix[i][0]=matrix[i][0];
+           for(int j=1;j<n;j++){
+               prefix[i][j]=prefix[i][j-1]+matrix[i][j];
+           }
+       }
+  
+   }
+  
+   public int sumRegion(int row1, int col1, int row2, int col2) {
+       int sum=0;
+       for(int i=row1;i<=row2;i++){
+           int leftprefix=0;
+           if(col1>0){
+               leftprefix=prefix[i][col1-1];
+           }
+           else{
+               leftprefix=0;
+           }
+           sum+=prefix[i][col2]-leftprefix;
+
+
+       }
+       return sum;
+   }
+}
+
+
+Question 71. Matrix Block Sum — 1314 (2D range query)
+Same whoi matrix ka presum bnaya fir, answer/sum calculate krne ke liye , logic lgado , logic copy pe jaega , fir whi row wla for loop lgana
+Question 72. Product of Array Except Self — 238 (Prefix/suffix products)
+Total product lele, fir 3 cases hai main, agr †wo  0 then then all elements are 0, if 1 elelement only element with 0 gets product, if no eros simple pro/nums[i]
+Question 73. Subarray Sum Equals K — 560 (Prefix sum + hashmap)
+Question 74. Continuous Subarray Sum — 523 (Modulo prefix sum)
+Question 75. Subarray Sums Divisible by K — 974 (Modulo handling)
+Question 76. Contiguous Array — 525 (Transform to sum problem)
+Question 77. Maximum Size Subarray Sum Equals k — 325 (Longest subarray)
+Question 78. Subarray Product Less Than K — 713 (Product constraint)
 
 
 
