@@ -1,0 +1,23 @@
+class Solution {
+    public boolean checkSubarraySum(int[] nums, int k) {
+        HashMap<Integer,Integer> map =new HashMap<>();
+        map.put(0,-1);
+        int curr=0;
+        int[] prefix=new int[nums.length];
+        prefix[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            prefix[i]=prefix[i-1]+nums[i];
+        }
+        for(int i=0;i<nums.length;i++){
+            curr=prefix[i]%k;
+            if(map.containsKey(curr)){
+                if(i-map.get(curr)>=2){
+                    return true;
+                }
+            }else{
+                map.put(curr,i);
+            }
+        }
+        return false;
+    }
+}
