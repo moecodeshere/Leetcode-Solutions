@@ -502,12 +502,30 @@ Same whoi matrix ka presum bnaya fir, answer/sum calculate krne ke liye , logic 
 Question 72. Product of Array Except Self — 238 (Prefix/suffix products)
 Total product lele, fir 3 cases hai main, agr †wo  0 then then all elements are 0, if 1 elelement only element with 0 gets product, if no eros simple pro/nums[i]
 Question 73. Subarray Sum Equals K — 560 (Prefix sum + hashmap)
+So we use prefix and the condition is prefix[r]-prefix[l-1]=k, when ith element is inclusive 
+We can say prefix[r] -k =prefix[l-1]  , we use a hashmap<prefix, frequency> and say if we find the prefix[r]-k then it is a valid subarray.also we move from left to right so we have all previous possible combinations
 Question 74. Continuous Subarray Sum — 523 (Modulo prefix sum)
-Question 75. Subarray Sums Divisible by K — 974 (Modulo handling)
-Question 76. Contiguous Array — 525 (Transform to sum problem)
-Question 77. Maximum Size Subarray Sum Equals k — 325 (Longest subarray)
-Question 78. Subarray Product Less Than K — 713 (Product constraint)
+Think similarly we are trying to find (prefix[r]-prefix[l])%k==0, this can also mean 
+prefix[r]%k==prefix[l-1]%k
+Bas fir who hashmap, if found then valid subarray does exists 
 
+Question 75. Subarray Sums Divisible by K — 974 (Modulo handling)
+Same to previous question same technique only thing unique here is we need to somehow accommodate the negative remainders so we use 
+int curr=((prefix[i]%k)+k)%k;
+And we play usong frequency 
+Question 76. Contiguous Array — 525 (Transform to sum problem)
+So its a binary array and we need to find equal number of 1 and 0 , so sum =0;
+We convert 0s to -1s , prefix me prefix[i]=prefix[i-1]+((nums[i]==0) ? -1:1);
+And simply agr koi i ke liye current=prefix[i] apn dekh chuke to uss wo ek valid window hogyi, after that what we do is windowlength= i-map.get(current) fir just measure maxlen
+
+Question 77. Maximum Size Subarray Sum Equals k — 325 (Longest subarray)
+Same hi hai 
+
+Question 78. Subarray Product Less Than K — 713 (Product constraint)
+Sliding window use krenge, l,r=0;
+Ek for loop se product calculate aur fir use for loop ke andr ek while(pro>=k) to l++;
+Main part is count=r-l+1;
+Ek subarray [1,2,3,4] whose indexes looks like [5,6,7,8] r=8;l=5 count=8-5+1=4 windows which are → [5,6,7,8] ; [6,7,8] ; [7,8] ; [8]   so 4 possible windows ending with the last element.
 
 
 
