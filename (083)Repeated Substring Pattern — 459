@@ -1,0 +1,16 @@
+class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        int n = s.length();
+        
+        for (int len = 1; len <= n / 2; len++) {         // Only up to n/2
+            if (n % len == 0) {                           // Only divisible lengths
+                String pattern = s.substring(0, len);
+                int times = n / len;
+                if (pattern.repeat(times).equals(s)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
