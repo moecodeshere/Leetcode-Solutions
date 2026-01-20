@@ -529,3 +529,48 @@ Ek subarray [1,2,3,4] whose indexes looks like [5,6,7,8] r=8;l=5 count=8-5+1=4 w
 
 
 
+
+String Patterns (79–94)
+Question 79. Reverse Words in a String III — 557 (Word reversal)
+So we are reversing the words, but keeping the order same of the words same,main thing here ise remembering syntax
+Strings are immutable, L*** kuch nhi kr skte direct string se, to new stringbuilder bnao, 
+Reverse stringbuilder me krte, append isme krte, aur kya yaad rkhne ka 
+Array of string bnate using split  String[] words= s.split(" ");
+Fir stringbuilder se wapis string bnate String reversed=new StringBuilder(word).reverse().toString();
+
+Question 80. Longest Common Prefix — 14 (Vertical scanning)
+To apn first word uthaenge,2 for loop lagenge but compelxity n2 nhi hogi beacuse comparisons utte nhi ho rhe, to logic hai agr characters same nhi to substring return kro strs[0] ki (0,i) tak 
+Yaad kya rkhna hai ki substring kaise use krte
+Question 81. Valid Palindrome II — 680 (One deletion allowed)
+So we use a ispalindrome function, so here the question says utmost 1 deletion, so the logic if there is a mismatch of l and r then we can delete one that means we check ispali(s,l+1,r) or ispali(s,l,r-1)  
+Question 82. Longest Palindrome — 409 (Character frequency)
+To logic here is agr koi element 2 baar hai to valid hai, or multiple of 2 to valid, agr odd hai , to frequency-1, aur end me agr koi single present hai to len+1;  two cases where you get singles , when some element appears only once , then when the frequency is odd, you can use a boolean variable, also to accommodate uppercase in the frequency array 
+if(c>='a' && c<='z'){
+               arr[c-'a']++;
+           }
+           else if(c>='A' && c<='Z'){
+               arr[c-'A'+26]++;
+           }
+
+Question 83. Repeated Substring Pattern — 459 (Pattern detection)
+So have a for loop where we check each string, and number times we can repeat it is s.len/len of that string,
+Also we need to only check upto n/2, and also we usse substring to extract the string 
+Question 84. Find the Index of the First Occurrence in a String — 28 (Substring search)
+To apn , use krenge substring, aur ek loop laganege 0 to hlen-nlen tak ka, aur use krnege 
+if(haystack.substring(i,i+nlen).equals(needle))
+
+Question 85. Longest Palindromic Substring — 5 (Expand around centers)
+So basically we create a expandarounfcentre function where we just check if left and right elements are equal.and then for themain body we have a for loop and then each i as a centre we expand both ofor odd and even , and then return the longest while comparing it to the result.
+Question 86. Palindromic Substrings — 647 (Count palindromes)
+Simply use the very same expand the centre logic, and this time just use a counter, and for the main body simply use a for loop and then count++ around for odd and even strings.
+Question 87. Find and Replace Pattern — 890 (Pattern matching)
+Bijection, two way mapping, their complexity because we have a list of strings , so we can create a function that provides if its a valid match or not.
+And in that we have two hashmaps wtp and ptw , and we check if the first char of each of them map to other, we do this for both maps, we check if w is present and if present equals to p or not.
+Question 88. Group Shifted Strings — 249 (Normalization)
+Question 89. Decode String — 394 (Stack-based parsing)
+Question 90. String Compression — 443 (Run-length encoding)
+Question 91. Compare Version Numbers — 165 (String parsing)
+Question 92. Multiply Strings — 43 (String arithmetic)
+Question 93. Add Binary — 67 (Binary addition)
+Question 94. Repeated DNA Sequences — 187 (Rolling hash)
+
