@@ -2,7 +2,7 @@ Leetcode
 
 So we have phases planned 
 Phase 1-2: 220 problems (Array + String fundamentals)
-Phase 3: 100 problems (LinkedList + Stack/Queue)
+Phase 3: 100 problems (LinkedList + Stack/Queue) 
 Phase 4: 100 problems (HashMap + Binary Search)
 Phase 5: 100 problems (Heap + Tree basics)
 Phase 6: 80 problems (BST + Graph algorithms)
