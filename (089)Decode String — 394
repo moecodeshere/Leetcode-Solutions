@@ -1,0 +1,45 @@
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> cstack= new Stack<>();
+        Stack<String> sstack= new Stack<>();
+        String ab="";
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            if(c=='['){
+                sstack.push("[");
+            }
+            else if(c==']'){
+                StringBuilder sb =new StringBuilder();
+                while(!sstack.isEmpty() && !sstack.peek().equals("[")){
+                    sb.insert(0,sstack.pop());
+                }
+                if(!sstack.isEmpty()){
+                    sstack.pop();}
+                int n= cstack.pop();
+                String temp=sb.toString();
+                temp=temp.repeat(n);
+                sstack.push(temp);
+
+            }
+            else{
+                if(Character.isDigit(c)){
+                    int num=Character.getNumericValue(c);
+                    while(i+1<s.length() && Character.isDigit(s.charAt(i+1))){
+                        i++;
+                        num=num*10 + Character.getNumericValue(s.charAt(i));
+                    }
+                    cstack.push(num);
+                }
+                else{
+                    sstack.push(Character.toString(c));
+                }
+            }
+            
+            
+        }
+        while(!sstack.isEmpty()){
+                ab=sstack.pop() +ab;
+            }
+        return ab;
+    }
+}
