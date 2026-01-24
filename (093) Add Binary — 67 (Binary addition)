@@ -1,0 +1,52 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        int lena=a.length(); int lenb= b.length();
+        int maxlen=Math.max(lena,lenb);
+        int[] result= new int[maxlen+1];
+        int carry=0;
+        int i=lena-1;
+        int j=lenb-1;
+        int pos2=maxlen;
+                int pos1=pos2-1;
+        while(i>=0 || j>=0){
+            char chara = (i >= 0) ? a.charAt(i) : '0';  
+            char charb = (j >= 0) ? b.charAt(j) : '0';
+                
+                if(chara=='0' && charb=='0'){
+                    result[pos2]= (carry==1) ? 1 :0; 
+                    carry=0;
+                }
+                else if(chara=='1' && charb=='0'){
+                    result[pos2]= (carry==1) ? 0:1;
+                    
+                }
+                else if(chara=='0' && charb=='1'){
+                    result[pos2]= (carry==1) ? 0:1;
+                    
+                }
+                else if(chara=='1' && charb=='1'){
+                    result[pos2]= (carry==1) ? 1:0;
+                    carry=1;
+                }
+                i--;j--;pos2--;pos1--;
+        }
+        if (carry == 1) {
+            result[pos2] = 1;
+        } else {
+            result[pos2] = 0;
+        }
+        if(result[0]==0){
+           StringBuilder sb = new StringBuilder();  // Change 10: fix skipping first 0
+            for(int k = 1; k < result.length; k++){
+                sb.append(result[k]);
+            }
+            return sb.toString();
+        }
+        StringBuilder sb =new StringBuilder();
+        for(int num : result){
+            sb.append(num);
+        }
+        String s=sb.toString();
+        return s;
+    }
+}
