@@ -1,0 +1,29 @@
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        
+        // Sort by end time
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
+        
+        // Keep track of how many intervals we can keep
+        int keepCount = 1;
+        int lastEnd = intervals[0][1];
+        
+        for (int i = 1; i < intervals.length; i++) {
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+            
+            // If current interval doesn't overlap with the last kept interval
+            if (start >= lastEnd) {
+                keepCount++;
+                lastEnd = end;
+            }
+            // else: we skip (remove) this interval
+        }
+        
+        // Minimum removals = total - kept
+        return intervals.length - keepCount;
+    }
+}
