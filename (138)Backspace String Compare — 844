@@ -1,0 +1,60 @@
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        Deque<Character> sstack=new ArrayDeque<>();
+        Deque<Character> tstack=new ArrayDeque<>();
+        for(char c : s.toCharArray()){
+            if(c!='#'){
+                sstack.push(c);
+            }
+            else if(!sstack.isEmpty() && c=='#'){
+                sstack.pop();
+            }
+        }
+        for(char c : t.toCharArray()){
+            if(c!='#'){
+                tstack.push(c);
+            }
+            else if(!tstack.isEmpty() && c=='#'){
+                tstack.pop();
+            }
+        }
+        if(sstack.size()!=tstack.size()){
+            return false;
+        }
+        StringBuilder sbs=new StringBuilder();
+        while(!sstack.isEmpty()){
+            sbs.append(sstack.pop());
+        }
+        StringBuilder sbt=new StringBuilder();
+        while(!tstack.isEmpty()){
+            sbt.append(tstack.pop());
+        }
+        return sbs.reverse().toString().equals(sbt.reverse().toString());
+    }
+}
+/*. class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        return build(s).equals(build(t));
+    }
+    
+    private String build(String str) {
+        Deque<Character> stack = new ArrayDeque<>();
+        
+        for (char c : str.toCharArray()) {
+            if (c != '#') {
+                stack.push(c);
+            } else if (!stack.isEmpty()) {
+                stack.pop();
+            }
+        }
+        
+        // Build the final string (reverse order from stack)
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        
+        // Important: reverse to get correct order
+        return sb.reverse().toString();
+    }
+}  */
