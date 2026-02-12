@@ -1,0 +1,26 @@
+class Solution {
+    public int calPoints(String[] operations) {
+        Deque<Integer> stack=new ArrayDeque<>();
+        for(String c : operations)
+        if(c.equals("D")){
+            stack.push(stack.peek() * 2); 
+        }
+        else if(c.equals("C")){
+            stack.pop();
+        }
+        else if(c.equals("+")){
+            int pop1=stack.pop();
+            int pop2=stack.peek();
+            stack.push(pop1);
+            stack.push(pop1+pop2);
+        }
+        else{
+            stack.push(Integer.parseInt(c));
+        }
+        int sum=0;
+        for(int scores: stack){
+            sum+=scores;
+        }
+        return sum;
+    }
+}
