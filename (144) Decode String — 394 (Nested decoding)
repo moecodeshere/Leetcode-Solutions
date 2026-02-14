@@ -1,0 +1,42 @@
+class Solution {
+    public String decodeString(String s) {
+        Deque<Integer> cstack=new ArrayDeque<>();
+        Deque<String> sstack=new ArrayDeque<>();
+        for(int i =0;i<s.length();i++){
+            char c = s.charAt(i);
+            if(c==']'){
+                int n=cstack.pop();
+                StringBuilder sb =new StringBuilder();
+                while(!sstack.isEmpty() && !sstack.peek().equals("[")){
+                    sb.insert(0,sstack.pop());
+             
+                }
+                if (!sstack.isEmpty()) {
+                    sstack.pop();
+                }
+                
+                sstack.push(sb.toString().repeat(n));
+            }
+            else if(c=='['){
+                sstack.push(String.valueOf(c));
+            }
+            else if(Character.isDigit(c)){
+                int num=0;
+                while(i<s.length() && Character.isDigit(s.charAt(i))){
+                    num=num*10+(s.charAt(i)-'0');
+                    i++;
+                }
+                i--;
+                cstack.push(num);
+            }
+            else{
+                sstack.push(String.valueOf(c));
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        while(!sstack.isEmpty()){
+            result.insert(0,sstack.pop());
+        }
+        return result.toString();
+    }
+}
