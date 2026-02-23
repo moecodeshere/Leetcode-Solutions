@@ -1,0 +1,30 @@
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        //bucket sort
+        //create a hashmap
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int num :nums){
+            map.put(num,map.getOrDefault(num,0)+1);
+        }
+        //create a list with values as index
+        List<Integer>[] bucket=new List[nums.length+1];
+        for(int num : map.keySet()){
+            int f=map.get(num);
+            if(bucket[f]==null) bucket[f]=new ArrayList<>();
+            bucket[f].add(num);
+        }
+        //now create an int[] result of len k and populate it with last k elements
+        int[] result=new int[k];
+        int idx=0;
+        for(int i=bucket.length-1;i>=0;i--){
+            if(bucket[i]!=null){
+                for(int num :  bucket[i]){
+                    result[idx]=num;
+                    idx++;
+                    if(idx==k) return result;
+                }
+            }
+        }
+        return result;
+    }
+}
