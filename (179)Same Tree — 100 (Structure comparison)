@@ -1,0 +1,49 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        //recursion
+        if(p==null && q==null) return true;
+        if(p==null || q==null) return false;
+        if(p.val!=q.val) return false;
+        return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+        /*if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+        Deque<TreeNode> pqueue=new ArrayDeque<>();
+        Deque<TreeNode> qqueue=new ArrayDeque<>();
+        pqueue.offer(p);
+        qqueue.offer(q);
+        while(!pqueue.isEmpty() && !qqueue.isEmpty()){
+            TreeNode nodep=pqueue.poll();
+            TreeNode nodeq=qqueue.poll();
+            if(nodep==null && nodeq==null) continue;
+            if(nodep==null || nodeq==null) return false;
+            if(nodep.val!=nodeq.val) return  false;
+            if (nodep.left == null && nodeq.left != null) return false;
+            if (nodep.left != null && nodeq.left == null) return false;
+            if (nodep.right == null && nodeq.right != null) return false;
+            if (nodep.right != null && nodeq.right == null) return false;
+
+            // Only enqueue non-null children
+            
+if (nodep.left != null)  { pqueue.offer(nodep.left);  qqueue.offer(nodeq.left); }
+if (nodep.right != null) { pqueue.offer(nodep.right); qqueue.offer(nodeq.right); }
+        }
+    return pqueue.isEmpty() && qqueue.isEmpty();*/
+        
+    }
+    
+}
