@@ -1,0 +1,61 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int sum=0;
+    private int number(ArrayList<Integer> nums){
+        int zeros=1;
+        int no=0;
+        for(int i=nums.size()-1;i>=0;i--){
+            no+=nums.get(i)*zeros;
+            zeros*=10;
+        }
+        return no;
+    }
+    
+    /*this is not optimal without backtracking 
+    private void dfs(TreeNode node,ArrayList<Integer> nums){
+        if (node==null) return;
+        ArrayList<Integer> newnums=new ArrayList<>(nums);
+        newnums.add(node.val);
+        if(node.left==null && node.right==null){
+            sum+=number(newnums);
+        
+        }
+        dfs(node.left,newnums);
+        dfs(node.right,newnums);
+    } */
+    private void dfs(TreeNode node,ArrayList<Integer> nums){
+        if (node==null) return;
+        nums.add(node.val);
+        if(node.left==null && node.right==null){
+            sum+=number(nums);
+        
+        }
+        dfs(node.left,nums);
+        dfs(node.right,nums);
+        nums.remove(nums.size()-1);
+    }
+
+
+
+
+    public int sumNumbers(TreeNode root) {
+        
+        ArrayList<Integer> nums=new ArrayList<>();
+        dfs(root,nums);
+        return sum;
+    }
+}
