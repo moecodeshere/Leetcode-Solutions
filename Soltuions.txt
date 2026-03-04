@@ -2,10 +2,10 @@ Leetcode
 
 So we have phases planned 
 Phase 1-2: 220 problems (Array + String fundamentals)
-Phase 3: 100 problems (LinkedList + Stack/Queue) 
+Phase 3: 100 problems (LinkedList + Stack/Queue)
 Phase 4: 100 problems (HashMap + Binary Search)
 Phase 5: 100 problems (Heap + Tree basics)
-Phase 6: 80 problems (BST + Graph algorithms) 
+Phase 6: 80 problems (BST + Graph algorithms)
 
 PHASE 1
 Phase 1: Array Patterns (1-120)
@@ -560,17 +560,659 @@ To apn , use krenge substring, aur ek loop laganege 0 to hlen-nlen tak ka, aur u
 if(haystack.substring(i,i+nlen).equals(needle))
 
 Question 85. Longest Palindromic Substring — 5 (Expand around centers)
-So basically we create a expandarounfcentre function where we just check if left and right elements are equal.and then for themain body we have a for loop and then each i as a centre we expand both ofor odd and even , and then return the longest while comparing it to the result.
+So basically we create a expandarouncentre function where we just check if left and right elements are equal and then for the main body we have a for loop and then each i as a centre we expand both ofor odd and even , and then return the longest while comparing it to the result.
 Question 86. Palindromic Substrings — 647 (Count palindromes)
 Simply use the very same expand the centre logic, and this time just use a counter, and for the main body simply use a for loop and then count++ around for odd and even strings.
 Question 87. Find and Replace Pattern — 890 (Pattern matching)
 Bijection, two way mapping, their complexity because we have a list of strings , so we can create a function that provides if its a valid match or not.
 And in that we have two hashmaps wtp and ptw , and we check if the first char of each of them map to other, we do this for both maps, we check if w is present and if present equals to p or not.
 Question 88. Group Shifted Strings — 249 (Normalization)
+Locked hai, nhi kr rhe 
 Question 89. Decode String — 394 (Stack-based parsing)
+Have two stacks stringstack and count stack 
+4 possibilities → [  or number or ] or alphabet
+[ → push in sstack
+] → sstack ka pop krke ek stringbuilder me dalte, agar empty nhi to pop krte aur fir new string= ko repeat krte cstak.pop times 
+Baki syntax kafi tha Character.getNumericValu    Character.isDigit
+!sstack.peek().equals("[")
+
 Question 90. String Compression — 443 (Run-length encoding)
+class Solution {
+   public int compress(char[] chars) {
+       int read=0;
+       int write=0;
+       while(read<chars.length){
+           char current=chars[read];
+           int count=0;
+           while(read<chars.length && chars[read]==current){
+               read++;
+               count++;
+           }
+           chars[write]=current;
+           write++;
+
+
+           if(count>1){
+               String str= String.valueOf(count);
+               for(char c:str.toCharArray()){
+                   chars[write]=c;
+                   write++;
+               }
+           }
+       }
+       return write;
+   }
+}
+
 Question 91. Compare Version Numbers — 165 (String parsing)
+Tricky problem statement, multiple decimals /versions ho skte, fir unme teen case hote , ya to 1,-1,0. String ko split krlo into an String[ ]  , jo phle bada mila uss hissab sse set krdiya 
 Question 92. Multiply Strings — 43 (String arithmetic)
+Answer store karwana padega using two pointer , ek result array bnalo of (m+n) digits, 
+Right to left it represents digits rightmost being untis place, extract digits rgiht most , mulptiply them, two pointers pos1=i+j (carry wali)  pos2= i+j+1(last digit), sum bhi calculate krna = product+last carry that is result[pos2] 
+Fir result[pos1]+=sum/10; result[pos2]=sum%10;
 Question 93. Add Binary — 67 (Binary addition)
-Question 94. Repeated DNA Sequences — 187 (Rolling hash)
+While loop use , 0,0 =0; 0,1=1;  1,1=1, carry 1
+Ek result name ka  integre array, fir uski length maxlen+1;
+If else conditions with ternarny 
+Fir leading zeros ka dekhna hai 
+ Question 94. Repeated DNA Sequences — 187 (Rolling hash)
+Simply have a hashmap, add substrings , for i, have aresult list, add if already seen, if not add to hashmap
+
+
+More Arrays + Greedy Introduction (95-109)
+Question 95. Rotate Array — 189 (Cyclic rotation)
+Ek function bnao jo reverse kre, fir last k elements reverse, then 0 so k-1 tak elements reverse, fir whole array reverse
+Question 96. Next Permutation — 31 (In-place permutation)    ⭐️
+So the algorithm is like
+From right to left , we try to find a pivot, which has a bigger number towards right.
+Once we find that, we find the smallest bigger number towards its right ,swap them 
+And then reverse the pivot+1 till end 
+Question 97. Merge Intervals — 56 (Interval merging) ⭐️
+Step1)Sort the list Arrays.sort(arrayname, (a,b) ->(lambda) a[0]-a[b];
+Main thing is remembering that how are we going to manage the merging logic, to ek int[] current \ength of 2 ka lelenge,if window overlap update current , current ka[1] hi  update sirf  if overlapping, fir baas add to result 
+Question 98. Insert Interval — 57 (Interval insertion)
+So what we need to do is, first add the intervals which are not merging, to the ones while (i < n && intervals[i][1] < newInterval[0])
+Then we need to merge the ones which overlap , we dont use a overlapping conditions, instead we get there automatically because last while lopp leaves us at the overlapping intervals,while (i < n && intervals[i][0] <= newInterval[1]) {
+           newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+           newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+           i++;
+       }
+Then we simply add the rest while (i < n) {
+           result.add(intervals[i]);
+           i++;
+
+Question 99. Non-overlapping Intervals — 435 (Interval removal)
+Keep track of previous non overlapping,s ending, and then compare it to the current ith element’s start, if its smaller its a overlapping one, simply increment the counter.
+Question 100. Assign Cookies — 455 (Greedy assignment)
+So most of the time to use greedy anything, you need to know what is more valuable , so sorting is the way to go.have two pointers then the same thing compare  g[i] & s[j]
+And move accordingly 
+
+Question 101. Lemonade Change — 860 (Change making)
+Bass possibilities calvculate krlo , uske baad sirf if lese me lga do , bas aise ki five always save krna hai priority is to save fives always.
+Question 102. Meeting Rooms — 252 (Overlap check)
+Locked hai
+Question 103. Jump Game — 55 (Greedy reachability)
+Simply har ith element pe calculate krna hai maximum position possible, jb bhi koi len-1 ke equal y zyada hojae to sahi bdado 
+Question 104. Jump Game II — 45 (Minimum jumps)
+Instead of trying to find out if we can get to end, we need to find the minimum number of steps it takes to get to end. So we do is have windows, have a currenend that represents the maximum for the current number and a max that is the maximum tht we have recorded till now , then main thing here is if if(i == currentEnd){
+               count += 1;
+               currentEnd = max;
+           }
+
+
+Question 105. Gas Station — 134 (Greedy circuit)
+So greedy approach here is if we cant reach/satisfy condition from ith position so you cant satisfy from any positions left to i. So whenever a condition fails we take greedy decision 
+if (tank < 0) {
+               start = i + 1; // reset window
+               tank = 0;
+           }
+
+Question 106. Partition Labels — 763 (String partitioning)
+Two ways hago , one is o(n2) and other single pass,
+Have a array named last that records the last occurrences through 
+int[] lastIndex = new int[26]; for (int i = 0; i < s.length(); i++) { lastIndex[s.charAt(i) - 'a'] = i; }
+After that we start a for loop ;
+And end = maximum of(end, the last occurrence of th etih term )
+Uske baad if i==end add result to partition
+Aur start update krdo 
+Question 107. Minimum Number of Arrows to Burst Balloons — 452 (Interval coverage)
+Arrays.sort(points, (m,n) -> m[0]-n[0]);
+       int count=1;
+       int end=points[0][1];
+       for(int i =1;i<points.length;i++){
+           if(points[i][0]>end){
+               count++;
+               end=points[i][1];
+           }
+           else{
+               end=Math.min(end,points[i][1]);
+           }
+       }
+       return count;
+
+Question 108. Candy — 135 (Two-pass greedy)
+Question 109. Queue Reconstruction by Height — 406 (Greedy reconstruction)
+
+## LinkedList Fundamentals (110-134)
+Question 110. Reverse Linked List — 206 (Iterative reversal)
+Have three pointers prev, curr ,    next  but also remember we just want to temporarily save the temp just so that we can work right now 
+Loop lgado, fir curr.next=prev; prev= curr; curr=next 
+Question 111. Middle of the Linked List — 876 (Fast/slow pointers)
+Naive approach, find the middle using count, then again loop and return the list node which is at middle.
+FAST/SLOW POINTER APPROACH
+Fast moves two steps and slow moves , and we check if fast!=null and fast.next!=null this was for while loop
+Question 112. Palindrome Linked List — 234 (Middle + reverse)
+Find middle, slow and fast pointers , after that reverse after slow/mid, and then compare first and slow and so on
+Question 113. Merge Two Sorted Lists — 21 (Merge operation)
+Make a dummynode , then we compare list1 and list2 nodes, then add to the next of dummynode, and increment/next the list, and then simply fill the non empty list when one list is empty
+Question 114. Remove Linked List Elements — 203 (Value removal)
+ListNode dummy=new ListNode(0);
+       dummy.next=head;
+       ListNode curr=dummy;
+       while(curr.next!=null){
+           if(curr.next.val==val){
+               curr.next=curr.next.next;
+           }
+           else{
+               curr=curr.next;
+           }
+       }
+       return dummy.next;
+
+Question 115. Delete Node in a Linked List — 237 (Node deletion)
+SO the pro=blem here is we are not given the head, so instead we add the value of next in current and skip the next 
+node.val= node.next.val;
+       node.next=node.next.next;
+
+Question 116. Remove Duplicates from Sorted List — 83 (Adjacent duplicates)
+Dummy lgado, if curr.value == curr.next.value, curr.next ko curr.next.next;
+Return dummy.next 
+Question 117. Linked List Cycle — 141 (Floyd's detection)
+Kuch nhhi bas, ek slow , ek fast lena hau , fir slow ek , fastnext.next , fir if equal cycle exists .
+AUR QUESTION STATEMENT ME JO pos  DIY HAI, SIRF TO CONFUSE
+NHI  BHAI AGLE QUESTION PE SMJH AYA - its important that you write the sand f iteratively,warna apko kaise pts hoga tail ke baad kha jna hai, while trying to predict the next iterative step.
+Question 118. Linked List Cycle II — 142 (Cycle start)
+Phle ek cycle to find if cycle exists, if exists , we reset the slow pointer to head and then return slow pointer Phle ek cycle to detect cycle, if cycle exists, we break and reset slow=head , while keeping fast as same then another cycle, slow is the starting point of the cycle,
+Question 119. Intersection of Two Linked Lists — 160 (Length difference)
+So what we wo do is find the length , which ever is longer , uska pointer length- lengthb se age badado
+Fir balance hogya, to find the intersection simple loops se 
+Question 120. Remove Nth Node From End of List — 19 (Two pointers)
+Intuition simple basic iteration find len, len-n is the point,from which we skip the next element.
+But slow and fast idk how to know fast is kept at n fir fast chalate end tak.
+
+Question 121. Rotate List — 61 (Circular connection)
+Turn it into a new circular list point the current tail to head, then len-k-1 th element ko new tail bnao aur uske agle ko newhead jo already sahi jagah point kar rha hai 
+Question 122. Odd Even Linked List — 328 (Position grouping)
+odd.next=even.next;//se
+while(even!=null && even.next!=null){   
+//even always reaches null first or inworst case equal to odd,ye mere hisab se hit adn trial se aya 
+           odd.next=even.next;//sets address of next
+           odd=odd.next;//listnode representing that specifc node
+           //similarly for even
+           even.next=odd.next;
+           even=even.next;
+       }
+
+Question 123. Partition List — 86 (Two-list approach)
+Simply make dummy nodes for smallhead, bighead, and simply assign small and big to the heads, and curr=head,simple loop
+			If value kam 
+small.next=curr;move small
+Else big.next=curr,move big
+In the end small ki tail =bighead;
+Big ki tail null
+Question 124. Swap Nodes in Pairs — 24 (Pair swapping)
+Have multiple pointers, one for previous, one for first, one next, one curr, one second
+Baki logic bnaloge , copy pe likho bas 
+Question 125. Reverse Linked List II — 92 (Sublist reversal)
+3 steps
+1)find before and after nodes
+2)a for loop that reverses from l to right
+3)connect the before to right(curr prev) and lefthead/l node to after
+Question 126. Reorder List — 143 (Middle + reverse + merge)
+Again 3 steps) 
+step1)find middle by fast and slow
+step2) reverse the second half
+Step3)join alternatively 
+Question 127. Remove Duplicates from Sorted List II — 82 (All duplicates)
+Have a curr, prev, dummy
+Ek if condition hogi jiske andr ek while loop thru which we check the repetitive ones and then just skip them using the while loop and update prev to curr.next ultimately skipping the current recurring number 
+
+
+
+Question 128.  Elementary addition)
+Remember new list bannai hai , to ek dummy se nwe ll bnai jae, curr, curr1,curr2 ho carry ho
+Aur new Node jodna hai har baar curr.next = new ListNode(sum % 10);
+Question 129. Add Two Numbers II — 445 (Reverse order)
+Reverse both lists, then add them normally, then reverse the answer;
+Question 130. Plus One Linked List — 369 (Increment operation)
+locked
+Question 131. Sort List — 148 (Merge sort)
+ Merge Sort, recursive calls, use the name of the function that we writing for recursion
+So we need a helper function called merge.then we create  dummy and then just compare the l1 and l2 nodes and curr(dummy) to them 
+So steps are like 
+step1)find middle by slow and fast, then the node before middle disconnect the lists 
+while(fast!=null && fast.next!=null){
+           prev=slow;
+           slow=slow.next;
+           fast=fast.next.next;
+
+step2)recursion 
+ListNode left=sortList(head);
+       ListNode right=sortList(slow);
+      
+       return merge(left,right);
+
+step3)write merge fn
+private ListNode merge(ListNode l1, ListNode l2){
+       //remmeber the concept of reaaranging you just take the head dummy and connect & connect
+       ListNode dummy=new ListNode(0);
+       ListNode curr=dummy;
+       while(l1!=null && l2!=null){
+       if(l1.val<l2.val){
+           curr.next=l1;
+           l1=l1.next;
+       }
+       else{
+           curr.next=l2;
+           l2=l2.next;
+       }
+       curr=curr.next;
+       }
+       if(l1!=null){
+           curr.next=l1;
+       }
+       else{
+           curr.next=l2;
+       }
+       return dummy.next;
+   }
+
+Question 132. Insertion Sort List — 147 (Insertion sort)
+Have a outer loop , and get a variable named next i.e. curr.next for implementation purpose, have a prev, have a pos, pos is the number that is greater than the current and then we havea another loop where we find the pos, and we just increment the prev and the pos there and when we come outside the second loop we simply insert the current between the pev and pos so prev.next=curr; curr.next=pos and then we update curr to next again 
+
+Question 133. Copy List with Random Pointer — 138 (Deep copy)
+So what is happening here is we make a hashmap of nodes, aur hashmap me curr aur ek new node add krte map.put(curr,new Node(curr.val));to ye directly new creation krte 
+Next next loop me simply while curr!=null me if(curr.random!=null){
+               newcurr.next.random=map.get(curr.random);
+           }
+Aur move pointers
+
+Question 134. Flatten a Multilevel Doubly Linked List — 430 (DFS flattening)
+
+
+## Stack Fundamentals (135-152)
+Question 135. Valid Parentheses — 20 (Stack matching)
+Have a hashmap, for parentheses, then if opening bracket push it, if closing aur uska hashmap me ka hi hai means its th eidentical closing bracket for c , you pop it and at end if stackisempty , answer is true
+
+Question 136. Min Stack — 155 (Auxiliary stack)
+To language aur syntax dekhke bharbharana nhi hai , simply logic socha , 2 stack , bahr wale me sirf intialize, fir thode andr me naye bnado ye.fir simply jo bhi apna logic hai , operations ka wo bhar do 
+
+Question 137. Implement Queue using Stacks — 232 (Two stacks)
+Have two stacks, one is input and other is output, after that for pop and peek, if the output is empty , we transfer all elements one by one to output until input stack is empty, then we return output.pop, is empty ke liye both stacks empty together 
+
+Question 138. Backspace String Compare — 844 (Stack simulation)
+So have a two stacks if char c =# pop else push and then stringbuilder and convert to string and reverse them sb.reverse().toString();
+return build(s).equals(build(t));
+
+Question 139. Remove All Adjacent Duplicates In String — 1047 (Stack removal)
+Simply if current == stack.peek remove 
+
+
+
+Question 140. Remove All Adjacent Duplicates in String II — 1209 (Count-based removal)
+Use a stack of pairs 
+class pair{
+   char ch;
+   int count;
+   pair(char ch, int count){
+       this.ch=ch;
+       this.count=count;
+   }
+
+Question 141. Baseball Game — 682 (Stack operations)
+Have a stack that takes int, and then simply follow the possibilities and at end add all the nums , only thing to remember here is ability to convert a string to int Integer.parseInt(c))
+
+Question 142. Evaluate Reverse Polish Notation — 150 (Postfix evaluation)
+Simple hi hai copy/paper pe likho hojai
+Question 143. Basic Calculator II — 227 (Operator precedence)
+SO what you do to tackle operator precedence is that remember * and / can always multiplied when between two numbers and if its a plus or a minus we add the current number to the stack, then we write it like 
+Question 144. Decode String — 394 (Nested decoding)
+Syntax thoda complex ho sktat hai ,but main tricks are stuff like remeebering we need to insert at front and to do that we use result.insert(0,sstack.pop());
+Aur ek stack count ke liye , ek stack string aur brackets ke liye 
+
+Question 145. Next Greater Element I — 496 (Monotonic stack)
+Ek stack ho, aur apan iterate kre nums2 right to left, fir agar peek, smaller hai nums se then we pop it, and add the nums in stack.pop smaller elements as they are useless
+Question 146. Next Greater Element II — 503 (Circular array)
+So to duplicate a circular array we use % , we simply use a for loop with 2*n-1 and use curr=nums[i%n], then similar to the last one we see if the top is smaller we pop, and then when the second half comes of th iteration i.e. when if(i<n){
+               result[i]=stack.isEmpty() ? -1 : stack.peek();
+
+Question 147. Daily Temperatures — 739 (Temperature tracking)
+So we can follow the same technique but a counter wont work instead what we do is instead of storing the value in the montonic stack we save the indices of the previous warmer/greater element and then simply the result is stack.peek() - i;
+
+Question 148. Online Stock Span — 901 (Running span)
+SO how we tackle this problem is we have an int[] array as stack elements, and we calculate the span for each input, and we simply use the same technique if the next element is bigger we simply pop the previous and addit to span span+=stack.pop()[1];
+
+Question 149. Sum of Subarray Minimums — 907 (Contribution method)  very star question took half a day still im like idk (means the mastery over previous is shallow)no worries pura khatam krke 4 baar padhi din me So left reach nikale , right reach nikale and nums * left * rightreach ++=== ans
+
+ In financial data: if arr is stock prices, NGE = next day the price will exceed today. In temperature data: NGE = next warmer day. In histograms: PSE and NSE give you the left/right wall boundaries for rectangles. The pop event is literally the moment a dominance relationship ends.
+
+PUSH  → "I don't have an answer yet. I'm entering the waiting room."
+POP   → "I just got my answer. I'm leaving."
+PEEK  → "You're asking about me without evicting me. I'm the answer for someone else."
+
+"What is the NEXT ___ to my RIGHT?"  → answered at POP time
+"What is the LAST ___ to my LEFT?"   → answered at PEEK time (before pushing)
+
+
+Question 150. Largest Rectangle in Histogram — 84 (Area calculation)
+Calculate the next smaller, previous mslaeer those are the ranges of the rectangle , and width =nse-pse-1
+And the array nse’s -1 should be nums.length and pse’s -1 should be -1
+Main idea is what is the biggest rectabglw where this specific bar is smallest height
+Question 151. Maximal Rectangle — 85 (2D histogram)
+Plan to skip 
+Question 152. Car Fleet — 853 (Position + speed)
+So what we do is a create a 2d with position and speed as elements of array, then sort it in descending order with position as basis, then we calculate timeof arrival 
+double time =(double)(target-car[0])/car[1];
+. so the idea is if the time of arrival is more than the previous/stack.peek()   , it would never catchup with current fleet and hence create a new fleet 
+And at the end size of stack is is the number of fleets
+
+
+
+## Queue & Heap Basics (153-167)
+
+Question 153. Design Circular Queue — 622 (Circular design)
+class MyCircularQueue {
+   int[] data;
+   int head;
+   int tail;
+   int capacity;
+   int size;
+   public MyCircularQueue(int k) {
+       data=new int[k];
+       head=0;
+       tail=-1;
+       capacity=k;
+       size=0;
+   }
+  
+   public boolean enQueue(int value) {
+       if(isFull()) return false;
+       tail=(tail+1)%capacity;
+       data[tail]=value;
+       size++;
+       return true;
+   }
+  
+   public boolean deQueue() {
+       if(isEmpty()) return false;
+       head=(head+1)%capacity;
+       size--;
+       return true;
+   }
+  
+   public int Front() {
+       return isEmpty() ? -1:data[head];
+   }
+  
+   public int Rear() {
+       return isEmpty() ? -1 :data[tail];
+   }
+  
+   public boolean isEmpty() {
+       return size==0;
+   }
+  
+   public boolean isFull() {
+       return size==capacity;
+   }
+}
+
+
+/**
+* Your MyCircularQueue object will be instantiated and called as such:
+* MyCircularQueue obj = new MyCircularQueue(k);
+* boolean param_1 = obj.enQueue(value);
+* boolean param_2 = obj.deQueue();
+* int param_3 = obj.Front();
+* int param_4 = obj.Rear();
+* boolean param_5 = obj.isEmpty();
+* boolean param_6 = obj.isFull();
+*/
+
+Question 154. Design Circular Deque — 641 (Deque design)
+Same like previous but we just need to accumulate the the tail from n-1
+Question 155. Moving Average from Data Stream — 346 (Window average)
+locked
+Question 156. Number of Recent Calls — 933 (Time window)
+Simply a queue, first innsert/offer it ,then if queue.peek()<t-3000; remove it/poll();return queue.size();
+Question 157. Dota2 Senate — 649 (Game simulation)
+ So we have two queues, so to tackle the rounds we simply add n to the elements’ index if they voting in the next round 
+
+
+The General Rule for Comparators
+The comparator (a, b) -> result 
+ always follows one rule, no exceptions:
+result is negative  →  a comes first (a has higher priority)
+result is zero      →  doesn't matter
+result is positive  →  b comes first (b has higher priority)
+
+
+Question 158. Kth Largest Element in an Array — 215 (Quickselect/heap)
+Simply use a min heap, add to heap then if size is greater than k , simply remove the top/smallest element and replace it with the new number and when we do this continuously at the end the top of the heap is the Kth largest element as 
+Question 159. Kth Largest Element in a Stream — 703 (Running kth)
+Same min heap concept but for implementation based questions remember this 
+Staring at a blank class?
+│
+├── What does the problem ask me to track over time?
+│ └── Those are your FIELDS, or what does your methods needs from outside
+│
+├── What am I given at the start?
+│ └── Those are your CONSTRUCTOR parameters
+│
+├── What operations must work?
+│ └── Those are your METHODS
+│
+└── What must each method return?
+└── Read the return type in the signature
+
+Question 160. Last Stone Weight — 1046 (Heap simulation)
+Offer everything/all elements in a maxheap then just poll the bigger ones, subtract and offer again and at the last return heap.peek();
+Question 161. K Closest Points to Origin — 973 (Distance heap)
+Comparator use it is 
+PriorityQueue<int[]> heap = 
+new PriorityQueue<>( (a, b) -> (a[0]*a[0] + a[1]*a[1]) - (b[0]*b[0] + b[1]*b[1]) );
+The comparator (a, b) -> result 
+ always follows one rule, no exceptions:
+result is negative  →  a comes first (a has higher priority)
+result is zero      →  doesn't matter
+result is positive  →  b comes first (b has higher priority)
+
+Question 162. Top K Frequent Elements — 347 (Frequency heap)
+Heap takes ologn
+So we use bucket sort 
+Create a hashmap, then create an arraylist with vaues/frequency as index then create an int[] result to store, stuff to remember in this code is 
+if(bucket[f]==null) bucket[f]=new ArrayList<>();
+Also how to tackle the filling of the array 
+
+
+
+
+Question 163. Sort Characters By Frequency — 451 (Frequency sort)
+Same thing use bucket sort 
+Have a frequency as index 
+Question 164. Find K Pairs with Smallest Sums — 373 (Pair generation) next 4 mushkil hai
+
+Question 165. Reorganize String — 767 (Greedy scheduling)
+
+Question 166. Task Scheduler — 621 (CPU scheduling)
+So the problem does gets a little complex as we need only to keep track of the count, so step1) make an frequency array 
+step2)offer everything to heap 
+step3)so the main logic is we use cycles of n+1, and we take the most common  one first using the maxheap
+Then we store the polls in a temp and while
+Question 167. Meeting Rooms II — 253 (Concurrent tracking)
+	Locked
+
+
+
+## Trees - Traversal & Basics (168-192)
+	All the iterative dfs uses stack to implement and bfs uses a queue
+Question 168. Binary Tree Inorder Traversal — 94 (Iterative DFS)
+So simply first we go as possible left as possible while adding to stackthen we simply pop the stack, add to result and then simply curr=curr.right
+Question 169. Binary Tree Preorder Traversal — 144 (Iterative DFS)
+	Here we have a stack we simly first push the root, and then curr=stack.pop
+And then we push curr.right first and then curr.left in the stack and then we mutually automatically while iterations add top of stack to the result.
+Question 170. Binary Tree Postorder Traversal — 145 (Iterative DFS)
+Same have the stack push root to it, then the left , then right and build the result adn then at the very end just reverse the whole
+Question 171. Binary Tree Level Order Traversal — 102 (BFS basics)
+So we need to give answer level wise, so weuse a queue andhere in the queue, the size of the level is determined by the size of the queue, and then we run a for loop inside the a while loop(until queue is not empty) , and then we  simply add the top of the queue and offer left adn then right 
+Question 172. Binary Tree Level Order Traversal II — 107 (Bottom-up BFS)
+	Just reverse
+
+
+
+
+
+
+Question 173. Binary Tree Zigzag Level Order Traversal — 103 (Alternating BFS)
+So we similarly prepare the leves, have a level an arraylist Do the same thing like previous question and only reverse the result, alternatiely using collections to alternate it at each level 
+Question 174. Binary Tree Right Side View — 199 (Level selection)
+So we use bfs and only add to result when on last node rest is same 
+Question 175. Average of Levels in Binary Tree — 637 (Level computation)
+We similarly create each level and then at the end get the average divide by size, and then just add to result
+
+Question 176. Find Bottom Left Tree Value — 513 (Level tracking)
+You use the same bfs and then and each time i==0 you update result and then at the very end just return result
+Question 177. Maximum Depth of Binary Tree — 104 (Recursive DFS)
+We can use bfs , well technically its o(n) but a dfshaas a bettersolution 
+Recursive solution 
+Simply return Math.max(maxDepth(root.left),maxDept(root.right))+1;
+
+
+
+Question 178. Minimum Depth of Binary Tree — 111 (BFS or DFS)
+Use bfs ,follow same template and then in middle if a node/curr is 
+if(curr.left==null && curr.right==null) return depth;
+
+Question 179. Same Tree — 100 (Structure comparison)
+As simple bfs , dfstraversal dosnt work because in answer we dont include nulls, one approach couldbe maybe include the nulls too but its tough include checks, so we instead compare each and every node  during traversal , and it must follow three things
+First if both exists, if their values match, and if its same for left and right subtrees
+Question 180. Symmetric Tree — 101 (Mirror validation)
+So a mirror/symmetric tree,the outmost branches shold be equal and th inner most branches should be equal , so we can either do this recursively or use a queue
+Question 181. Invert Binary Tree — 226 (Structure modification)
+So according to recursion what we do is have temp treenode and equal it to root.left and then just root.left=root.right and then root.right=temp
+And then simple recursively inverttree(root.left) and then inverttree(root.right)
+
+For iterative method use bfs 
+Use queue, and change the left and right and then offer left nd right
+Question 182. Balanced Binary Tree — 110 (Height checking)
+So we have the height helper function, and then in the main we simply find the right and left heights and then simply return 
+
+Math.abs(left-right)<=1 && isBalanced(root.left) && isBalanced(root.right);
+
+
+
+
+
+
+
+Question 183. Diameter of Binary Tree — 543 (Path through root)
+So the diameter is the max length between right and left , so what we do is have a height function and then we simply calculate left and right and return height.
+Question 184. Sum of Left Leaves — 404 (Conditional sum)
+Recursion can be done in many ways but what we can do is find left leafs for each node 
+if(root.left!=null && root.left.left==null && root.left.right==null) sum+=root.left.val;
+
+Question 185. Leaf-Similar Trees — 872 (Leaf sequences)
+Collect node amd compare, either recursion or dfs using a stack 
+Question 186. Path Sum — 112 (Root-to-leaf DFS)
+Think in a recursion , what would be base cases , when null ,when we come across leaf nodes,and then in recursion we simply check for left and right subtrees while subtracting the value from targetsum
+BASECASE1  if(root==null) return false;
+BASECASE2 if(root.left==null && root.right==null) return root.val==targetSum;
+return hasPathSum(root.left,targetSum-root.val) ||  hasPathSum(root.right,targetSum-root.val);
+
+Question 187. Path Sum II — 113 (All paths backtracking)
+Simple backtracking, you visit everything and (base case) the leaf node youcheckif the targetsum is equal to current sum and if yes simply add. Do same for left and right subtrees and at end backtrack by path.remove(path.size()-1);
+Removing the most recent node
+
+
+
+Question 188. Binary Tree Paths — 257 (Path strings)
+We also need to realize most questions can be solved multiple ways, this can be done both using a backtrack or without it.WHi concept hai root tak jao, base cases socho aur lgao fir recursion end me
+Question 189. Sum Root to Leaf Numbers — 129 (Number formation)
+But my man , backtracking is always better, simply have a helper function to convert an arraylist to number, backtrack and for each one if its a leaf node u simply add sumto it. And then simply do left and right tress, at the ended we simply bactrack, by removing the last element i.e.nums.remove(nums.size()-1);
+Question 190. Subtree of Another Tree — 572 (Subtree matching)
+You can have a string, usme dfs fir check if substr presentin str,but its notoptimal 
+Optimal is using issamtree helper methos and then check if subroot issmaetree for right and left child subtrees
+Question 191. Merge Two Binary Trees — 617 (Tree merging)
+Simply think of cases,either both roots are null, either one isnull then return the other one.then root1.val+=root2.val; and then just fill root1’s left and right
+
+Question 192. Count Good Nodes in Binary Tree — 1448 (Path tracking)
+Simply 
+if(node.val>=maxsofar){
+           count=1;
+Aur fir count+=dfs(on right tree and left subtrees)
+
+
+## BST Operations (193-207)
+Question 193. Search in a Binary Search Tree — 700 (BST search)
+What changed only that its a binary tree,base cases socho ,  root==null;
+root.val==val;
+root.val>val search left side else search right side 
+Question 194. Insert into a Binary Search Tree — 701 (BST insertion)
+We only inswert when node ia null and what we check is the root compared to vlue ;if smaller to left ,else to right 
+Question 195. Delete Node in a BST — 450 (BST deletion)
+Searching is same else if(key>root.val)
+Then the thign is deleting, while deleting three case, 
+if node is leaf no problem , return null, 
+If node has one child (a)if left is null return right (b) else return left
+If node has 2 children, we find the smallest in the right subtree, because 
+when deleting a node with 2 children, we need a replacement that keeps the BST valid. Inorder Successor = smallest value in RIGHT subtree = the value just ABOVE the deleted node in sorted order 
+It's safe because: 
+- it's LARGER than everything in left subtree 
+- it's SMALLER than everything in right subtree 
+- BST property maintained! 
+Question 196. Validate Binary Search Tree — 98 (BST property)
+Have a helper function and just for a minimum and maximum check if its always in range and then for the left binary tree only constrain the upper value 
+And then in right bin ary tree constrain the lower value/min 
+private boolean isvalid(TreeNode root, long min, long max){
+       if(root==null) return true;
+       if(root.val<=min || root.val>=max) return false;
+       //next line simply means if its in range
+       return isvalid(root.left,min,root.val) && isvalid(root.right,root.val,max);
+   }
+   public boolean isValidBST(TreeNode root){
+       return isvalid(root,Long.MIN_VALUE,Long.MAX_VALUE);
+   }
+
+Question 197. Kth Smallest Element in a BST — 230 (Inorder + count)
+Phle boht galat soch lye the, jod tod kr rhe the 
+But instead we use inorder left, root, right, according to dfs gives a sorted lsit 
+
+
+
+Question 198. Minimum Absolute Difference in BST — 530 (Inorder difference)
+Simply inorder chalte, aur difference lete jate, aur mindiff global variable , and then we also use a prev for the difference and calculate min diff in indeed and then just continue it 
+
+Question 199. Find Mode in Binary Search Tree — 501 (Frequency tracking)
+So the idea is that the inorder gives a sorted list in a bst so the same elements will be adjacent and you keep track of the most occurred one till now 
+Last me list se array use return result.stream().mapToInt(i -> i).toArray();
+Also remember that we need to clear the list too when we find a new maxstrk 
+Question 200. Lowest Common Ancestor of a BST — 235 (BST LCA)
+So what happens here is if p and q both less than the root , then we recurse left tree, if bigger then right tree and when none of these then root is the LCA
+Question 201. Convert Sorted Array to Binary Search Tree — 108 (Balanced construction)
+Have a helper function , that takes nums, l=0; r=len-1; 
+So we always make mid as root, and then left side from l to mid-1 becomes left subtree and mid+1 to right becomes right subtree
+Question 202. Trim a Binary Search Tree — 669 (Range pruning)
+Simple to trim if node.val<low to discard node and leftsubtree and return trim(rightbst)
+And if node.val>high , discard node and right subtree return trim(leftsubtree)
+Aur fir root.left aur root.right ko simply attach by root.left=trimBST(root.left,low,high);
+
+
+
+
+Question 203. Range Sum of BST — 938 (Conditional sum)
+
+Question 204. Increasing Order Search Tree — 897 (Flatten BST)
+Question 205. Convert BST to Greater Tree — 538 (Reverse inorder)
+Question 206. Two Sum IV - Input is a BST — 653 (BST search)
+Question 207. Lowest Common Ancestor of a Binary Tree — 236 (General tree LCA)
 
