@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */ 
+class Solution {
+    int sum=0;
+    private void summer(TreeNode node, int l, int h){
+        if(node==null) return;
+        if(node.val>=l && node.val<=h){
+            sum+=node.val;
+        }
+        if(node.val>l){
+            summer(node.left,l,h);
+        }
+        if(node.val<h){
+            summer(node.right,l,h);
+        }
+        /*summer(node.left,l,h);
+        summer(node.right,l,h);  instead of doing these use the bst properties */ 
+    }
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        summer(root,low,high);
+        return sum;
+    }
+}
+
+
+/*not optimal we actually arent using the bst property
+int sum=0;
+    private void summer(TreeNode node, int l, int h){
+        if(node==null) return;
+        if(node.val>=l && node.val<=h){
+            sum+=node.val;
+        }
+        summer(node.left,l,h);
+        summer(node.right,l,h);
+    }
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        summer(root,low,high);
+        return sum;
+    } */
