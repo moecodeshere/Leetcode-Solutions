@@ -1,0 +1,47 @@
+/* 
+ * LeetCode 133: Clone Graph - SIMPLE BFS Version
+ * Clear variable names (no short names like 'nei')
+ */
+
+class Solution {
+    
+    public Node cloneGraph(Node node) {
+        
+        if (node == null) {
+            return null;
+        }
+        
+        // copyMap remembers: original node → its copy
+        Map<Node, Node> copyMap = new HashMap<>();
+        
+        // Create the copy of the starting node
+        Node startCopy = new Node(node.val);
+        copyMap.put(node, startCopy);
+        
+        // BFS queue: holds original nodes we still need to explore
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        
+        while (!queue.isEmpty()) {
+            
+            Node currentNode = queue.poll();           // take next original node
+            Node currentCopy = copyMap.get(currentNode); // its already-made copy
+            
+            // Go through every neighbor in the original node's neighbor list
+            for (Node neighbor : currentNode.neighbors) {
+                
+                // If we haven't made a copy of this neighbor yet
+                if (!copyMap.containsKey(neighbor)) {
+                    Node neighborCopy = new Node(neighbor.val);
+                    copyMap.put(neighbor, neighborCopy);
+                    queue.offer(neighbor);             // add to queue for later
+                }
+                
+                // Add the neighbor's copy to the current node's copy list
+                currentCopy.neighbors.add(copyMap.get(neighbor));
+            }
+        }
+        
+        return startCopy;
+    }
+}
