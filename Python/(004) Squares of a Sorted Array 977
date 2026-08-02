@@ -1,0 +1,20 @@
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        #cretae a new list 
+        result =[0]*len(nums)
+        
+        #pointers
+        l=0
+        r=len(nums)-1
+        
+        #for loop and calculating the squares and in next steps we compare and fill the result 
+        for i in range(len(nums)-1,-1,-1):
+            ls=nums[l]**2
+            rs=nums[r]**2
+            if ls>rs:
+                result[i]=ls
+                l+=1
+            else:
+                result[i]=rs
+                r-=1
+        return result
